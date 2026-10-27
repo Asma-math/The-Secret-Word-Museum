@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>متحف الكلمات السري | لغز المفرد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#5E2CA5; --purple-d:#43197E; --purple-l:#F1EAFB; --purple-m:#B9A0E3;
+  --turq:#0E9F94; --turq-d:#0A7D74; --turq-l:#E3F7F5;
+  --gold:#E0A82E; --gold-l:#FFF4D6; --gold-d:#B98412;
+  --ink:#2B2340; --bad:#B4467A;
+  --shadow:0 10px 28px rgba(94,44,165,.14);
+  --shadow-s:0 4px 12px rgba(94,44,165,.12);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Cairo','Tajawal','Noto Naskh Arabic','Segoe UI',Tahoma,sans-serif;
+  background:#fff; color:var(--ink); direction:rtl;
+  min-height:100vh; min-height:100dvh;
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(224,168,46,.10) 0, transparent 22%),
+    radial-gradient(circle at 92% 8%, rgba(14,159,148,.09) 0, transparent 24%),
+    radial-gradient(circle at 50% 100%, rgba(94,44,165,.07) 0, transparent 40%);
+  background-attachment:fixed;
+}
+#root{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;max-width:1200px;margin:0 auto;padding:0 12px}
+
+/* ===== Names bars ===== */
+.names{
+  background:#fff; border:2px solid var(--gold); border-radius:20px;
+  box-shadow:var(--shadow-s); margin:10px 0;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:6px 28px; padding:8px 18px; position:relative;
+}
+.names::before,.names::after{content:"✦";color:var(--gold);font-size:clamp(14px,2vw,22px);position:absolute;top:50%;transform:translateY(-50%)}
+.names::before{right:10px}.names::after{left:10px}
+.names .nm{font-weight:800;color:var(--purple);font-size:clamp(17px,2.6vw,28px);line-height:1.5;text-align:center}
+.names .nm b{color:var(--turq-d);font-weight:800}
+.names .sep{width:2px;height:26px;background:linear-gradient(var(--gold),var(--purple-m));border-radius:2px}
+@media(max-width:560px){.names .sep{display:none}.names{padding:8px 26px}}
+
+.topbar{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.bar-wrap{flex:1;background:var(--purple-l);border-radius:99px;height:22px;position:relative;overflow:hidden;box-shadow:inset 0 2px 4px rgba(94,44,165,.12)}
+.bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),#F5CF6B);border-radius:99px;transition:width .7s cubic-bezier(.3,1.3,.5,1);position:absolute;right:0}
+.bar-txt{font-weight:800;color:var(--purple);font-size:clamp(14px,1.8vw,18px);white-space:nowrap}
+.icon-btn{border:0;background:#fff;border:2px solid var(--purple-m);color:var(--purple);width:50px;height:50px;border-radius:16px;font-size:24px;cursor:pointer;box-shadow:var(--shadow-s);flex:none;display:grid;place-items:center;transition:transform .15s}
+.icon-btn:active{transform:scale(.92)}
+
+main{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;padding:6px 0 4px}
+.screen{animation:fadeUp .6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+h1,h2,h3{color:var(--purple);margin:0}
+.btn{
+  font-family:inherit;border:0;cursor:pointer;font-weight:800;color:#fff;
+  background:linear-gradient(180deg,#17BBAE,var(--turq));
+  border-radius:20px;padding:14px 30px;font-size:clamp(20px,2.8vw,28px);
+  box-shadow:0 6px 0 var(--turq-d),0 12px 20px rgba(14,159,148,.25);
+  min-height:60px;transition:transform .12s,box-shadow .12s;
+}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--turq-d)}
+.btn.ghost{background:#fff;color:var(--turq-d);border:3px solid var(--turq);box-shadow:var(--shadow-s);font-size:clamp(16px,2.2vw,22px);padding:10px 20px;min-height:52px}
+.btn.gold{background:linear-gradient(180deg,#F5CF6B,var(--gold));color:#4a3300;box-shadow:0 6px 0 var(--gold-d),0 12px 20px rgba(224,168,46,.3)}
+.btn.gold:active{box-shadow:0 1px 0 var(--gold-d)}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ===== Welcome ===== */
+.welcome{text-align:center;padding:10px 0}
+.welcome .museum{width:min(560px,92%);margin:0 auto;display:block;filter:drop-shadow(0 14px 22px rgba(94,44,165,.2))}
+.welcome h1{font-size:clamp(34px,7vw,72px);font-weight:900;line-height:1.25;margin:6px 0 2px;
+  background:linear-gradient(90deg,var(--purple),#8A52D6 50%,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.welcome .sub{font-size:clamp(18px,3vw,30px);font-weight:700;color:var(--gold-d);margin-bottom:16px}
+.welcome .story{max-width:720px;margin:0 auto 20px;background:var(--gold-l);border:2px dashed var(--gold);border-radius:22px;padding:12px 18px;font-size:clamp(16px,2.3vw,22px);line-height:1.8;font-weight:600}
+.float{animation:float 3.2s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* ===== Hall ===== */
+.hall-title{text-align:center;margin-bottom:6px}
+.hall-title h2{font-size:clamp(26px,4.5vw,44px);font-weight:900}
+.hall-title p{margin:2px 0 0;font-size:clamp(15px,2.2vw,22px);font-weight:600;color:#6a5d86}
+.keys{display:flex;justify-content:center;gap:12px;margin:8px 0 14px}
+.keyslot{width:56px;height:56px;border-radius:50%;background:var(--purple-l);border:2px dashed var(--purple-m);display:grid;place-items:center;transition:.5s}
+.keyslot svg{width:34px;opacity:.18;filter:grayscale(1)}
+.keyslot.on{background:var(--gold-l);border:2px solid var(--gold);box-shadow:0 0 18px rgba(224,168,46,.6)}
+.keyslot.on svg{opacity:1;filter:none;animation:pop .7s}
+@keyframes pop{0%{transform:scale(0) rotate(-90deg)}70%{transform:scale(1.3) rotate(15deg)}100%{transform:none}}
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:820px){.doors{grid-template-columns:repeat(2,1fr);gap:12px}}
+.door{background:#fff;border-radius:26px;border:3px solid var(--c);box-shadow:var(--shadow);padding:10px 8px 14px;text-align:center;cursor:pointer;position:relative;transition:transform .2s;font-family:inherit;color:inherit}
+.door:active{transform:scale(.96)}
+.door:hover{transform:translateY(-5px)}
+.door svg{width:min(150px,70%);display:block;margin:0 auto}
+.door .dn{font-weight:900;color:var(--c);font-size:clamp(18px,2.4vw,26px);margin-top:4px}
+.door .dt{font-weight:700;font-size:clamp(13px,1.7vw,17px);color:var(--ink);min-height:2.8em;line-height:1.4;padding:0 4px}
+.dots{display:flex;gap:5px;justify-content:center;margin-top:6px}
+.dots i{width:13px;height:13px;border-radius:50%;background:#E6DFF3}
+.dots i.f{background:var(--gold);box-shadow:0 0 6px rgba(224,168,46,.8)}
+.door.locked{filter:saturate(.35);opacity:.8}
+.door .lock{position:absolute;top:10px;left:10px;font-size:26px}
+.door.done{background:linear-gradient(#fff,var(--gold-l))}
+.door.shake{animation:shake .5s}
+.hall-actions{margin-top:18px}
+
+/* ===== Question ===== */
+.qwrap{max-width:900px;margin:0 auto;width:100%}
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--c);color:#fff;font-weight:800;padding:8px 18px;border-radius:99px;font-size:clamp(15px,2.1vw,21px);box-shadow:var(--shadow-s)}
+.qcount{font-weight:800;color:var(--purple);font-size:clamp(15px,2.1vw,21px)}
+.qcard{background:#fff;border:3px solid var(--purple-l);border-top:8px solid var(--c);border-radius:26px;box-shadow:var(--shadow);padding:clamp(16px,3vw,30px);margin-bottom:16px;text-align:center;position:relative}
+.qcard h3{font-size:clamp(24px,4.2vw,42px);font-weight:800;line-height:1.55}
+.qcard h3 em{font-style:normal;color:var(--turq-d);background:var(--turq-l);padding:0 12px;border-radius:12px;white-space:nowrap}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.opts{grid-template-columns:1fr}}
+.opt{font-family:inherit;display:flex;align-items:center;gap:14px;text-align:right;background:#fff;border:3px solid var(--turq);color:var(--ink);border-radius:22px;padding:14px 18px;font-size:clamp(22px,3.2vw,34px);font-weight:800;cursor:pointer;min-height:84px;box-shadow:0 5px 0 rgba(14,159,148,.35);transition:transform .12s,background .2s,box-shadow .12s;position:relative;overflow:hidden}
+.opt:hover{background:var(--turq-l)}
+.opt:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(14,159,148,.35)}
+.opt .lt{flex:none;width:46px;height:46px;border-radius:50%;background:var(--turq);color:#fff;display:grid;place-items:center;font-size:24px}
+.opt .tx{flex:1}
+.opt.correct{background:linear-gradient(135deg,#FFF4D6,#FFE29A);border-color:var(--gold);box-shadow:0 0 0 4px rgba(224,168,46,.35),0 0 30px rgba(224,168,46,.7);animation:glow 1.2s ease-in-out infinite alternate}
+.opt.correct .lt{background:var(--gold);color:#4a3300}
+.opt.wrong{background:#FBEAF2;border-color:var(--bad);opacity:.75;animation:shake .5s}
+.opt.wrong .lt{background:var(--bad)}
+.opt.dis{pointer-events:none}
+.opt.dim{opacity:.45}
+@keyframes glow{to{box-shadow:0 0 0 6px rgba(224,168,46,.25),0 0 44px rgba(224,168,46,.95)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(7px)}}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tf .opt{justify-content:center;font-size:clamp(28px,4.5vw,44px);min-height:100px}
+.tf .opt .lt{width:56px;height:56px;font-size:32px}
+.tf .opt.no{border-color:var(--purple);box-shadow:0 5px 0 rgba(94,44,165,.35)}
+.tf .opt.no .lt{background:var(--purple)}
+.tf .opt.no:hover{background:var(--purple-l)}
+
+.feedback{min-height:84px;margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.msg{font-weight:800;font-size:clamp(18px,2.7vw,28px);padding:10px 22px;border-radius:20px;text-align:center;animation:fadeUp .4s both;display:flex;align-items:center;gap:12px;line-height:1.5}
+.msg.good{background:var(--gold-l);color:#7a5200;border:2px solid var(--gold)}
+.msg.try{background:var(--purple-l);color:var(--purple-d);border:2px solid var(--purple-m)}
+.msg svg{width:46px;flex:none;animation:keyturn 1s ease both}
+@keyframes keyturn{0%{transform:scale(0) rotate(-200deg)}60%{transform:scale(1.3) rotate(30deg)}100%{transform:scale(1) rotate(0)}}
+.tick{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 0 16px rgba(224,168,46,.9)}
+
+/* sparkles */
+.spark{position:fixed;pointer-events:none;z-index:50;width:14px;height:14px;background:radial-gradient(circle,#fff 0,var(--gold) 55%,transparent 70%);border-radius:50%;animation:spark .9s ease-out forwards}
+@keyframes spark{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+
+/* ===== Door opening overlay ===== */
+.overlay{position:fixed;inset:0;z-index:40;background:rgba(255,255,255,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;text-align:center;animation:fadeIn .4s both;overflow:auto}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.opening{position:relative;width:min(300px,70vw);aspect-ratio:3/4;perspective:900px}
+.opening .glow{position:absolute;inset:8% 10%;background:radial-gradient(circle,#fff6d0,var(--gold) 60%,rgba(224,168,46,0) 75%);border-radius:50% 50% 8% 8%/30% 30% 8% 8%;animation:glowIn 1.4s .4s both;filter:blur(2px)}
+@keyframes glowIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.opening .leaf{position:absolute;top:8%;bottom:0;width:40%;background:var(--c);border:5px solid rgba(0,0,0,.12);box-shadow:inset 0 0 0 8px rgba(255,255,255,.18)}
+.opening .leaf.r{right:10%;transform-origin:right center;border-radius:60px 0 0 0;animation:openR 1.3s .3s ease-in-out forwards}
+.opening .leaf.l{left:10%;transform-origin:left center;border-radius:0 60px 0 0;animation:openL 1.3s .3s ease-in-out forwards}
+@keyframes openR{to{transform:rotateY(-105deg)}}
+@keyframes openL{to{transform:rotateY(105deg)}}
+.opening .frame{position:absolute;inset:6% 8% 0;border:10px solid var(--gold-d);border-bottom:0;border-radius:90px 90px 0 0}
+.overlay h2{font-size:clamp(28px,5vw,50px);font-weight:900}
+.overlay p{margin:0;font-size:clamp(17px,2.6vw,26px);font-weight:700;color:var(--gold-d)}
+
+/* ===== Final ===== */
+.final{text-align:center;position:relative;padding:4px 0 10px}
+.chest{width:min(300px,62vw);display:block;margin:0 auto}
+.chest .lid{transform-origin:50px 108px;transform:rotate(0);animation:lidOpen 1.4s .5s cubic-bezier(.3,1.4,.6,1) forwards}
+@keyframes lidOpen{to{transform:rotate(-62deg)}}
+.chest .beam{opacity:0;animation:beam 1.2s 1s forwards}
+@keyframes beam{to{opacity:1}}
+.final h2{font-size:clamp(30px,6vw,60px);font-weight:900;margin:4px 0;background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.final .p1{max-width:780px;margin:6px auto;font-size:clamp(18px,2.8vw,28px);font-weight:700;line-height:1.8;color:var(--ink)}
+.final .p2{font-size:clamp(22px,3.4vw,36px);font-weight:900;color:var(--turq-d);margin:8px 0 14px}
+.star{position:fixed;top:-30px;pointer-events:none;z-index:30;color:var(--gold);animation:fall linear forwards,tw 1s ease-in-out infinite alternate}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@keyframes tw{from{opacity:.55}to{opacity:1}}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(43,35,64,.45);display:grid;place-items:center;z-index:60;padding:16px}
+.modal .box{background:#fff;border-radius:26px;padding:24px;text-align:center;max-width:420px;border:3px solid var(--gold);box-shadow:var(--shadow)}
+.modal h3{font-size:26px;margin-bottom:6px}
+.modal p{font-size:19px;font-weight:600;margin:0 0 16px}
+
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;padding:12px 22px;border-radius:99px;font-weight:800;font-size:19px;z-index:70;box-shadow:var(--shadow);animation:fadeUp .3s both;max-width:92vw;text-align:center}
+</style>
+</head>
+<body>
+<div id="root">
+  <header class="names" aria-label="الأسماء">
+    <div class="nm"><b>إعداد:</b> الشيخه آل عثمان</div>
+    <div class="sep"></div>
+    <div class="nm"><b>المعلمة:</b> ساره الجمعة</div>
+  </header>
+
+  <div class="topbar" id="topbar" style="display:none">
+    <button class="icon-btn" id="muteBtn" title="كتم الصوت" onclick="toggleMute()">🔊</button>
+    <div class="bar-wrap"><div class="bar-fill" id="barFill"></div></div>
+    <div class="bar-txt" id="barTxt"></div>
+  </div>
+
+  <main id="app"></main>
+
+  <footer class="names" aria-label="الأسماء">
+    <div class="nm"><b>إعداد:</b> الشيخه آل عثمان</div>
+    <div class="sep"></div>
+    <div class="nm"><b>المعلمة:</b> ساره الجمعة</div>
+  </footer>
+</div>
+
+<script>
+/* ================== البيانات ================== */
+const DOORS = [
+  { name:'اكتشفوا المفرد والمثنى والجمع', color:'#6D3BB8', type:'mc', q:[
+    {q:'أي كلمة تدل على شيء واحد؟', o:['كوب','كوبان','أكواب','أطباق'], a:0},
+    {q:'أي كلمة تدل على المثنى؟', o:['حقيبة','حقيبتان','حقائب','كتاب'], a:1},
+    {q:'أي كلمة تدل على الجمع؟', o:['مفتاح','مفتاحان','مفاتيح','باب'], a:2},
+    {q:'أي كلمة تدل على المفرد؟', o:['سيارة','سيارتان','سيارات','دراجة'], a:0},
+    {q:'أي كلمة تدل على الجمع؟', o:['قلم','قلمان','أقلام','دفتر'], a:2},
+  ]},
+  { name:'أسرار الاسم المفرد', color:'#0E9F94', type:'mc', q:[
+    {q:'صنّفوا كلمة «هاتف»:', w:'هاتف', a:0},
+    {q:'صنّفوا كلمة «عصا»:', w:'عصا', a:1},
+    {q:'صنّفوا كلمة «القاضي»:', w:'القاضي', a:2},
+    {q:'صنّفوا كلمة «حذاء»:', w:'حذاء', a:3},
+    {q:'صنّفوا كلمة «مستشفى»:', w:'مستشفى', a:1},
+  ]},
+  { name:'صح أم خطأ؟', color:'#D19A1E', type:'tf', q:[
+    {q:'كلمة «مقهى» اسم مفرد مقصور.', a:true},
+    {q:'كلمة «المحامي» اسم مفرد منقوص.', a:true},
+    {q:'كلمة «هواء» اسم مفرد ممدود.', a:true},
+    {q:'كلمة «نافذة» اسم مفرد صحيح الآخر.', a:true},
+    {q:'كلمة «مرايا» تدل على المفرد.', a:false},
+  ]},
+  { name:'افتحوا باب الكنز', color:'#5B52D6', type:'mc', q:[
+    {q:'أي الكلمات التالية اسم مفرد مقصور؟', o:['ذكرى','شارع','منديل','شتاء'], a:0},
+    {q:'أي الكلمات التالية اسم مفرد منقوص؟', o:['المنادي','مصباح','سماء','محطة'], a:0},
+    {q:'أي الكلمات التالية اسم مفرد ممدود؟', o:['غذاء','حديقة','حاسوب','مقعد'], a:0},
+    {q:'أي الكلمات التالية اسم مفرد صحيح الآخر؟', o:['مطعم','فتى','الساعي','دواء'], a:0},
+  ]},
+];
+const TYPES = ['اسم مفرد صحيح الآخر','اسم مفرد مقصور','اسم مفرد منقوص','اسم مفرد ممدود'];
+DOORS[1].q.forEach(x=>x.o=TYPES);
+const TOTAL = DOORS.reduce((s,d)=>s+d.q.length,0); // ١٩
+const GOOD = ['أحسنتم! 🌟','رائع جدًا! ✨','إجابة ذهبية! 🏅','ممتاز! واصلوا التألق 💫','عبقريون! 🎉','بارك الله فيكم، إجابة صحيحة! 🌈','أصبتم! مفتاح جديد في جيبكم 🗝️'];
+const TRY1 = ['قريبة! فكّروا مرة أخرى، أنتم قادرون 💪','محاولة جميلة! أعطوا عقولكم فرصة ثانية 🌱','لا بأس، المحاولة الثانية أقوى! 🔍'];
+const LETTERS = ['أ','ب','ج','د'];
+
+const ar = n => String(n).replace(/\d/g, d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const $ = s => document.querySelector(s);
+
+/* ================== الحالة ================== */
+let S;
+function freshState(){
+  S = { door:0, solved:0, qi:[0,0,0,0], done:[false,false,false,false], tries:0, answered:false, muted:S?S.muted:false };
+}
+freshState();
+
+/* ================== الصوت ================== */
+let AC=null;
+function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(AC&&AC.state==='suspended') AC.resume(); return AC; }
+function tone(f,d,type='sine',v=.15,delay=0,f2){
+  if(S.muted) return; const c=ac(); if(!c) return;
+  const t=c.currentTime+delay, o=c.createOscillator(), g=c.createGain();
+  o.type=type; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.exponentialRampToValueAtTime(f2,t+d);
+  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(v,t+.02); g.gain.exponentialRampToValueAtTime(.001,t+d);
+  o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+d+.05);
+}
+const sfx = {
+  click(){ tone(520,.08,'sine',.08); },
+  good(){ tone(660,.25,'triangle',.16); tone(880,.25,'triangle',.16,.12); tone(1320,.5,'triangle',.14,.25); },
+  bad(){ tone(260,.3,'sine',.12,0,170); },
+  door(){ tone(110,.9,'sawtooth',.07,0,55); tone(70,.9,'square',.04,.05,45); [784,988,1175,1568].forEach((f,i)=>tone(f,.5,'triangle',.12,.9+i*.13)); },
+  win(){ [523,659,784,1047,784,1047,1319,1568].forEach((f,i)=>tone(f,.45,'triangle',.14,i*.16)); }
+};
+function toggleMute(){
+  S.muted=!S.muted; $('#muteBtn').textContent=S.muted?'🔇':'🔊'; if(!S.muted) sfx.click();
+}
+
+/* ================== رسومات SVG ================== */
+const keySVG = (c='#E0A82E') => `<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="kg${c.slice(1)}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE58A"/><stop offset="1" stop-color="${c}"/></linearGradient></defs><circle cx="20" cy="20" r="13" fill="url(#kg${c.slice(1)})" stroke="#B98412" stroke-width="3"/><circle cx="20" cy="20" r="5" fill="#fff" stroke="#B98412" stroke-width="2"/><rect x="29" y="28" width="9" height="30" rx="3" transform="rotate(-45 33 40)" fill="url(#kg${c.slice(1)})" stroke="#B98412" stroke-width="3"/><path d="M42 46l6-6M47 51l6-6" stroke="#B98412" stroke-width="5" stroke-linecap="round"/></svg>`;
+
+function doorSVG(color, num, locked, open){
+  const knob = '#F5CF6B';
+  return `<svg viewBox="0 0 140 190" aria-hidden="true">
+    <path d="M10 190V70a60 60 0 0 1 120 0v120z" fill="#EDE5F9" stroke="${color}" stroke-width="5"/>
+    <path d="M22 190V72a48 48 0 0 1 96 0v118z" fill="${open?'#FFF1B8':color}"/>
+    ${open?`<path d="M22 190V72a48 48 0 0 1 96 0v118z" fill="url(#gl)"/><path d="M22 190V72a48 48 0 0 1 24 -41L46 190z" fill="${color}"/><path d="M118 190V72a48 48 0 0 0-14-34L104 190z" fill="${color}" opacity=".8"/>`:
+    `<path d="M36 100V76a34 34 0 0 1 68 0v24z" fill="rgba(255,255,255,.18)"/><path d="M36 190V112h68v78z" fill="rgba(255,255,255,.12)"/><circle cx="102" cy="132" r="8" fill="${knob}" stroke="#B98412" stroke-width="3"/>`}
+    <defs><radialGradient id="gl"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#F5CF6B"/></radialGradient></defs>
+    <circle cx="70" cy="62" r="19" fill="#fff" opacity="${open?0:.95}"/>
+    <text x="70" y="72" text-anchor="middle" font-size="28" font-weight="900" fill="${color}" font-family="Cairo,Tahoma,sans-serif" opacity="${open?0:1}">${ar(num)}</text>
+    ${open?'<text x="70" y="125" text-anchor="middle" font-size="40">✨</text>':''}
+  </svg>`;
+}
+
+const museumSVG = `<svg class="museum float" viewBox="0 0 520 300" aria-hidden="true">
+  <defs><linearGradient id="roof" x1="0" x2="1"><stop offset="0" stop-color="#7B4FBF"/><stop offset="1" stop-color="#5E2CA5"/></linearGradient>
+  <radialGradient id="gate"><stop offset="0" stop-color="#FFF6D0"/><stop offset="1" stop-color="#E0A82E"/></radialGradient></defs>
+  <ellipse cx="260" cy="280" rx="230" ry="14" fill="rgba(94,44,165,.15)"/>
+  <path d="M40 120L260 28l220 92z" fill="url(#roof)" stroke="#43197E" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="260" cy="82" r="22" fill="#fff" stroke="#E0A82E" stroke-width="5"/>
+  <text x="260" y="92" text-anchor="middle" font-size="26" font-family="Cairo,Tahoma">🔐</text>
+  <rect x="40" y="120" width="440" height="18" rx="5" fill="#E0A82E"/>
+  ${[70,150,230,310,390].map((x,i)=>`<rect x="${x}" y="138" width="${i===2?0:34}" height="120" rx="6" fill="#F1EAFB" stroke="#B9A0E3" stroke-width="3"/>`).join('')}
+  <path d="M232 262V190a28 28 0 0 1 56 0v72z" fill="url(#gate)" stroke="#B98412" stroke-width="4"/>
+  <path d="M260 162v100" stroke="#B98412" stroke-width="3"/>
+  <rect x="24" y="258" width="472" height="18" rx="6" fill="#0E9F94"/>
+  <g fill="#E0A82E"><text x="60" y="50" font-size="26">✦</text><text x="450" y="62" font-size="22">✦</text><text x="110" y="95" font-size="16">✦</text><text x="410" y="100" font-size="18">✦</text></g>
+</svg>`;
+
+const chestSVG = `<svg class="chest" viewBox="0 0 100 100" aria-hidden="true">
+  <defs>
+    <linearGradient id="cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A52D6"/><stop offset="1" stop-color="#5E2CA5"/></linearGradient>
+    <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE58A"/><stop offset="1" stop-color="#D9A21F"/></linearGradient>
+    <radialGradient id="bm" cx=".5" cy="1"><stop offset="0" stop-color="#FFF6C8" stop-opacity="1"/><stop offset="1" stop-color="#FFE58A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g class="beam"><path d="M22 70 L-10 -10 L110 -10 L78 70z" fill="url(#bm)"/></g>
+  <rect x="14" y="62" width="72" height="34" rx="5" fill="url(#cw)" stroke="#43197E" stroke-width="2.5"/>
+  <rect x="14" y="62" width="72" height="8" fill="url(#cg)" stroke="#B98412" stroke-width="1.5"/>
+  <rect x="14" y="88" width="72" height="8" rx="3" fill="url(#cg)" stroke="#B98412" stroke-width="1.5"/>
+  <g class="beam"><ellipse cx="50" cy="62" rx="30" ry="5" fill="#FFE58A"/>
+    <circle cx="34" cy="58" r="5" fill="#F5CF6B" stroke="#B98412"/><circle cx="48" cy="55" r="6" fill="#FFE58A" stroke="#B98412"/><circle cx="63" cy="58" r="5" fill="#F5CF6B" stroke="#B98412"/>
+    <text x="45" y="20" font-size="9">✨</text></g>
+  <g class="lid">
+    <path d="M14 62V48a36 24 0 0 1 72 0v14z" fill="url(#cw)" stroke="#43197E" stroke-width="2.5"/>
+    <path d="M14 62V56h72v6z" fill="url(#cg)" stroke="#B98412" stroke-width="1.5"/>
+    <path d="M40 28a16 12 0 0 1 20 0" stroke="#F5CF6B" stroke-width="3" fill="none"/>
+  </g>
+  <rect x="44" y="66" width="12" height="14" rx="3" fill="url(#cg)" stroke="#B98412" stroke-width="2"/>
+  <circle cx="50" cy="72" r="2" fill="#5E2CA5"/>
+</svg>`;
+
+/* ================== الواجهة ================== */
+function setTop(show){ $('#topbar').style.display = show ? 'flex' : 'none'; if(show) updateProgress(); }
+function updateProgress(){
+  $('#barFill').style.width = (S.solved/TOTAL*100)+'%';
+  $('#barTxt').textContent = `${ar(S.solved)} من ${ar(TOTAL)}`;
+}
+function go(html){ const a=$('#app'); a.innerHTML=html; window.scrollTo({top:0,behavior:'smooth'}); }
+function clearStars(){ document.querySelectorAll('.star').forEach(e=>e.remove()); clearInterval(starTimer); }
+
+function renderWelcome(){
+  clearStars(); setTop(false);
+  go(`<section class="screen welcome">
+    ${museumSVG}
+    <h1>متحف الكلمات السري 🔐</h1>
+    <div class="sub">لغز المفرد</div>
+    <div class="story">في متحفٍ غامض أربعةُ أبوابٍ مغلقة، وخلف كل بابٍ ألغازٌ لغوية تنتظر العقول المبدعة.<br>أجيبوا عن الأسئلة، اجمعوا المفاتيح الذهبية، وافتحوا الأبواب حتى تصلوا إلى صندوق الكنز!</div>
+    <button class="btn gold" onclick="sfx.click();renderHall()">🗝️ ابدؤوا المغامرة</button>
+  </section>`);
+}
+
+function renderHall(){
+  clearStars(); setTop(true);
+  const keys = DOORS.map((d,i)=>`<div class="keyslot ${S.done[i]?'on':''}">${keySVG()}</div>`).join('');
+  const doors = DOORS.map((d,i)=>{
+    const locked = i>0 && !S.done[i-1];
+    const dots = d.q.map((_,j)=>`<i class="${j<S.qi[i]||S.done[i]?'f':''}"></i>`).join('');
+    return `<button class="door ${locked?'locked':''} ${S.done[i]?'done':''}" id="door${i}" style="--c:${d.color}" onclick="enterDoor(${i})" aria-label="الباب ${ar(i+1)}">
+      ${locked?'<span class="lock">🔒</span>':''}
+      ${doorSVG(d.color,i+1,locked,S.done[i])}
+      <div class="dn">الباب ${ar(i+1)}</div>
+      <div class="dt">${d.name}</div>
+      <div class="dots">${dots}</div>
+    </button>`;
+  }).join('');
+  go(`<section class="screen">
+    <div class="hall-title"><h2>قاعة الأبواب الأربعة</h2><p>اختاروا الباب المضيء وافتحوه بالمفتاح الذهبي</p></div>
+    <div class="keys" aria-label="المفاتيح">${keys}</div>
+    <div class="doors">${doors}</div>
+    <div class="row hall-actions"><button class="btn ghost" onclick="askRestart()">🔄 إعادة اللعب من البداية</button></div>
+  </section>`);
+}
+
+function enterDoor(i){
+  sfx.click();
+  if(i>0 && !S.done[i-1]){
+    const el=$('#door'+i); el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); sfx.bad();
+    toast(`افتحوا الباب ${ar(i)} أولًا 🔒`); return;
+  }
+  if(S.done[i]){ toast('هذا الباب مفتوح بالفعل ✨'); return; }
+  S.door=i; renderQuestion();
+}
+
+function renderQuestion(){
+  clearStars(); setTop(true);
+  const d=DOORS[S.door], q=d.q[S.qi[S.door]];
+  S.tries=0; S.answered=false;
+  const global = DOORS.slice(0,S.door).reduce((s,x)=>s+x.q.length,0)+S.qi[S.door]+1;
+  let opts;
+  if(d.type==='tf'){
+    opts = `<div class="tf">
+      <button class="opt" data-i="1" onclick="answer(this,true,event)"><span class="lt">✓</span><span class="tx">صح</span></button>
+      <button class="opt no" data-i="0" onclick="answer(this,false,event)"><span class="lt">✗</span><span class="tx">خطأ</span></button>
+    </div>`;
+  } else {
+    opts = `<div class="opts">`+q.o.map((t,i)=>`<button class="opt" data-i="${i}" onclick="answer(this,${i},event)"><span class="lt">${LETTERS[i]}</span><span class="tx">${t}</span></button>`).join('')+`</div>`;
+  }
+  const title = d.type==='mc' && q.w ? `صنّفوا كلمة <em>${q.w}</em> :` : q.q;
+  go(`<section class="screen qwrap" style="--c:${d.color}">
+    <div class="qhead">
+      <button class="btn ghost" onclick="sfx.click();renderHall()">🚪 قائمة الأبواب</button>
+      <span class="chip">🗝️ الباب ${ar(S.door+1)} · ${d.name}</span>
+      <span class="qcount">السؤال ${ar(global)} من ${ar(TOTAL)}</span>
+    </div>
+    <div class="qcard"><h3>${title}</h3></div>
+    ${opts}
+    <div class="feedback" id="fb"></div>
+  </section>`);
+}
+
+function answer(btn, val, ev){
+  if(S.answered) return;
+  const d=DOORS[S.door], q=d.q[S.qi[S.door]];
+  const ok = d.type==='tf' ? (val===q.a) : (val===q.a);
+  const fb=$('#fb');
+  if(ok){
+    S.answered=true; S.solved++; updateProgress(); sfx.good();
+    btn.classList.add('correct'); btn.querySelector('.lt').textContent='✓';
+    lockOthers(btn); burst(ev, btn);
+    fb.innerHTML = `<div class="msg good">${keySVG()}<span class="tick">✓</span><span>${pick(GOOD)}</span></div>` + nextBtn();
+  } else {
+    S.tries++; btn.classList.add('wrong','dis'); sfx.bad();
+    if(S.tries>=2){
+      S.answered=true; S.solved++; updateProgress();
+      const right = document.querySelector(`.opt[data-i="${d.type==='tf'?(q.a?1:0):q.a}"]`);
+      right.classList.add('correct'); lockOthers(right);
+      const txt = right.querySelector('.tx').textContent;
+      fb.innerHTML = `<div class="msg try">💡 الإجابة الصحيحة: «${txt}» — بالتدريب نصبح أقوى!</div>` + nextBtn();
+    } else {
+      fb.innerHTML = `<div class="msg try">${pick(TRY1)}</div>`;
+    }
+  }
+}
+function lockOthers(keep){
+  document.querySelectorAll('.opt').forEach(o=>{ o.classList.add('dis'); if(o!==keep && !o.classList.contains('wrong')) o.classList.add('dim'); });
+}
+function nextBtn(){
+  const last = S.qi[S.door]===DOORS[S.door].q.length-1;
+  return `<div class="row"><button class="btn" onclick="next()">${last?'🚪 افتحوا الباب':'السؤال التالي ⬅'}</button></div>`;
+}
+function next(){
+  sfx.click();
+  const d=S.door;
+  if(S.qi[d] < DOORS[d].q.length-1){ S.qi[d]++; renderQuestion(); }
+  else { S.done[d]=true; S.qi[d]=DOORS[d].q.length; renderDoorOpen(); }
+}
+
+function renderDoorOpen(){
+  setTop(true); updateProgress();
+  const d=S.door, col=DOORS[d].color, lastDoor = d===DOORS.length-1;
+  sfx.door();
+  const ov=document.createElement('div'); ov.className='overlay'; ov.style.setProperty('--c',col); ov.id='ov';
+  ov.innerHTML = `<div class="opening"><div class="glow"></div><div class="frame"></div><div class="leaf r"></div><div class="leaf l"></div></div>
+    <h2>انفتح الباب ${ar(d+1)}! 🎉</h2>
+    <p>حصلتم على المفتاح الذهبي ${ar(d+1)} 🗝️</p>
+    <div class="row">${lastDoor
+      ? `<button class="btn gold" onclick="openChest()">🎁 افتحوا صندوق الكنز</button>`
+      : `<button class="btn" onclick="closeOv();renderHall()">🚪 العودة إلى قائمة الأبواب</button>`}</div>`;
+  document.body.appendChild(ov);
+  setTimeout(()=>{ for(let i=0;i<14;i++) fly(window.innerWidth/2, window.innerHeight*.38); }, 1500);
+}
+function closeOv(){ const o=$('#ov'); if(o) o.remove(); }
+
+let starTimer;
+function renderFinal(){
+  setTop(false); S.door=0;
+  go(`<section class="screen final">
+    ${chestSVG}
+    <h2>سرّ المفرد أصبح بين أيديكم!</h2>
+    <div class="p1">بذكائكم وتعاونكم، انفتحت الأبواب وانكشفت الأسرار… وأثبتّم أن لكل كلمة حكاية، ولكل عقل مبدع مفتاحًا للمعرفة.</div>
+    <div class="p2">أنتم أبطال اللغة، وبالعلم يزداد التألق!</div>
+    <div class="row"><button class="btn" onclick="sfx.click();restart()">🔄 إعادة اللعب من البداية</button>
+    <button class="btn ghost" onclick="sfx.click();clearStars();renderWelcome()">🏛️ الشاشة الرئيسية</button></div>
+  </section>`);
+  sfx.win();
+  setTimeout(()=>{ for(let i=0;i<18;i++) fly(window.innerWidth/2, window.innerHeight*.3); },1300);
+  starTimer=setInterval(dropStar, 450);
+  for(let i=0;i<8;i++) setTimeout(dropStar, i*120);
+}
+function openChest(){ closeOv(); renderFinal(); }
+function dropStar(){
+  const s=document.createElement('span'); s.className='star'; s.textContent=pick(['★','✦','✧','⭐']);
+  s.style.left=Math.random()*100+'vw'; s.style.fontSize=(14+Math.random()*26)+'px';
+  s.style.animationDuration=(4+Math.random()*4)+'s, '+(.6+Math.random())+'s';
+  document.body.appendChild(s); setTimeout(()=>s.remove(),8500);
+}
+
+/* ===== مؤثرات ===== */
+function fly(x,y){
+  const s=document.createElement('span'); s.className='spark';
+  const a=Math.random()*Math.PI*2, r=60+Math.random()*120;
+  s.style.left=x+'px'; s.style.top=y+'px';
+  s.style.setProperty('--dx',Math.cos(a)*r+'px'); s.style.setProperty('--dy',Math.sin(a)*r+'px');
+  document.body.appendChild(s); setTimeout(()=>s.remove(),1000);
+}
+function burst(ev, el){
+  let x,y;
+  if(ev && ev.clientX){ x=ev.clientX; y=ev.clientY; }
+  else { const r=el.getBoundingClientRect(); x=r.left+r.width/2; y=r.top+r.height/2; }
+  for(let i=0;i<16;i++) fly(x,y);
+}
+function toast(t){
+  document.querySelectorAll('.toast').forEach(e=>e.remove());
+  const e=document.createElement('div'); e.className='toast'; e.textContent=t; document.body.appendChild(e);
+  setTimeout(()=>e.remove(),2200);
+}
+
+/* ===== إعادة اللعب ===== */
+function askRestart(){
+  sfx.click();
+  const m=document.createElement('div'); m.className='modal'; m.id='modal';
+  m.innerHTML=`<div class="box"><h3>إعادة اللعب؟</h3><p>سيتم إغلاق الأبواب وبدء المغامرة من جديد.</p>
+    <div class="row"><button class="btn" onclick="restart()">نعم، من البداية</button><button class="btn ghost" onclick="document.getElementById('modal').remove()">لا، تابعوا</button></div></div>`;
+  document.body.appendChild(m);
+}
+function restart(){
+  const m=$('#modal'); if(m) m.remove(); closeOv(); clearStars();
+  freshState(); renderHall();
+}
+
+renderWelcome();
+</script>
+</body>
+</html>
